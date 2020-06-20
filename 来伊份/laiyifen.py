@@ -5,7 +5,7 @@ from Cryptodome.Cipher import AES
 
 session = requests.Session()
 
-def get_imgeKey():
+def get_imgeKey(mobile_num):
     """
     获取网站返回的imgeKey
     :return:
@@ -16,7 +16,7 @@ def get_imgeKey():
         'Content-Type': 'application/x-www-form-urlencoded'
     }
     data = {
-        'mobile': '18511882793',
+        'mobile': mobile_num,
         'initType': '2',
         'width': '160',
         'height': '60',
@@ -77,7 +77,7 @@ def main(mobie_num):
     :param mobie_num:
     :return:
     """
-    imageKey = get_imgeKey()
+    imageKey = get_imgeKey(mobie_num)
     send_sms(imageKey)
     captchas = input('请输入验证码:')
     encrypted_mobile = get_encrypted_mobile(mobie_num)
